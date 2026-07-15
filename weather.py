@@ -2,6 +2,7 @@ import argparse
 import json
 import sys
 from configparser import ConfigParser
+from pathlib import Path
 from urllib import error, parse, request
 
 # =========================
@@ -83,7 +84,8 @@ def _get_api_key():
         api_key=<YOUR-OPENWEATHER-API-KEY>
     """
     config = ConfigParser()
-    config.read("secrets.ini")
+    # config.read("secrets.ini")
+    config.read(Path(__file__).parent / "secrets.ini")
     return config["openweather"]["api_key"]
 
 def get_weather_data(query_url):
